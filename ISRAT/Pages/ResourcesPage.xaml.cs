@@ -29,6 +29,7 @@ namespace ISRAT.Pages
         public ResourcesPage()
         {
             InitializeComponent();
+            ResourcesDataGrid.ItemsSource = resourcesTableAdapter.GetData();
             ColumnNameBox.ItemsSource = ResourcesDataGrid.Columns;
             ColumnNameBox.DisplayMemberPath = "Header";
             ColumnNameBox.SelectedValuePath = "DisplayIndex";
@@ -50,7 +51,7 @@ namespace ISRAT.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ResourcesDataGrid.ItemsSource = resourcesTableAdapter.GetData();
+            
         }
 
         private void ChangeResourceButton_Click(object sender, RoutedEventArgs e)

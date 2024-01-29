@@ -9,9 +9,9 @@
       Title="ResourcesPage" Loaded="Page_Loaded">
 
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="Ресуры" FontSize="24" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+        <TextBlock Text="Ресурсы" FontSize="24" HorizontalAlignment="Center" Margin="0 0 0 20"/>
         <DataGrid x:Name="ResourcesDataGrid" Style="{StaticResource MaterialDesignDataGrid}" CanUserDeleteRows="False" IsReadOnly="True" Margin="0 0 0 20" CanUserAddRows="False" SelectionChanged="ResourcesDataGrid_SelectionChanged" IsTextSearchEnabled="True" MaxHeight="300"></DataGrid>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical">
                 <TextBox x:Name="NameBox" MaxLength="255" materialDesign:HintAssist.Hint="Введите название ресурса" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
                 <TextBox x:Name="CharacteristicsBox" MaxLength="255" MaxWidth="300" materialDesign:HintAssist.Hint="Введите характеристики ресурса" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>

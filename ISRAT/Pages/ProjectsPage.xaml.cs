@@ -26,6 +26,7 @@ namespace ISRAT.Pages
         public ProjectsPage()
         {
             InitializeComponent();
+            ProjectsDataGrid.ItemsSource = projectsTableAdapter.GetData();
             ColumnNameBox.ItemsSource = ProjectsDataGrid.Columns;
             ColumnNameBox.DisplayMemberPath = "Header";
             ColumnNameBox.SelectedValuePath = "DisplayIndex";
@@ -46,7 +47,7 @@ namespace ISRAT.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ProjectsDataGrid.ItemsSource = projectsTableAdapter.GetData();
+            
         }
 
         private void StatusDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

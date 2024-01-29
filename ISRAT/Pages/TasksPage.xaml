@@ -16,9 +16,9 @@
                 <TextBox x:Name="NameBox" MaxLength="255" MaxWidth="248.243333333333" materialDesign:HintAssist.Hint="Введите название задачи" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>
                 <TextBox x:Name="CharacteristicsBox" MaxLength="255" MaxWidth="248.243333333333" materialDesign:HintAssist.Hint="Введите описание задачи" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>
                 <TextBox x:Name="Quantity" materialDesign:HintAssist.Hint="Введите приоритет задачи" MaxWidth="248.243333333333" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 10"/>
-                <ComboBox x:Name="StatusIDBox" Margin="0 0 0 20" materialDesign:HintAssist.Hint="Статус"/>
-                <ComboBox x:Name="ResponsibleUserIDBox" Margin="0 0 0 20" materialDesign:HintAssist.Hint="Ответственный сотрудник"/>
-                <ComboBox x:Name="ProjectIDBox" Margin="0 0 0 20" materialDesign:HintAssist.Hint="Проект"/>
+                <ComboBox x:Name="StatusIDBox" Margin="0 0 0 25" materialDesign:HintAssist.Hint="Статус" materialDesign:HintAssist.HelperText="Статус"/>
+                <ComboBox x:Name="ResponsibleUserIDBox" Margin="0 0 0 25" materialDesign:HintAssist.Hint="Ответственный сотрудник" materialDesign:HintAssist.HelperText="Ответственный сотрудник"/>
+                <ComboBox x:Name="ProjectIDBox" Margin="0 0 0 25" materialDesign:HintAssist.Hint="Проект" materialDesign:HintAssist.HelperText="Проект"/>
                 <DatePicker x:Name="StartDatePicker" materialDesign:HintAssist.Hint="Дата начала" Margin="0 0 0 20"/>
                 <DatePicker x:Name="EndDatePicker" materialDesign:HintAssist.Hint="Дата конца" Margin="0 0 0 20"/>
                 <StackPanel Orientation="Horizontal">

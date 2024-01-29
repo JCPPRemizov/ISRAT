@@ -1,6 +1,7 @@
 ﻿using ISRAT.DataSet1TableAdapters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,11 +28,7 @@ namespace ISRAT.Pages
         StatusTableAdapter statusTableAdapter = new StatusTableAdapter();
         public TasksPage()
         {
-            InitializeComponent();       
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+            InitializeComponent();
             ResourcesDataGrid.ItemsSource = tasksTableAdapter.GetData();
             ProjectIDBox.ItemsSource = projectsTableAdapter.GetData();
             ProjectIDBox.SelectedValuePath = "ID";
@@ -46,9 +43,27 @@ namespace ISRAT.Pages
             ResponsibleUserIDBox.DisplayMemberPath = "ID";
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         private void ResourcesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataRowView taskRowView = ResourcesDataGrid.SelectedItem as DataRowView;
+            if (ResourcesDataGrid.SelectedItem != null)
+            {
+                NameBox.Text = taskRowView.Row[1].ToString();
+                CharacteristicsBox.Text = taskRowView.Row[2].ToString();
+                Quantity.Text = taskRowView.Row[3].ToString();
+                StatusIDBox.SelectedValue = taskRowView.Row[4].ToString();
+                ResponsibleUserIDBox.SelectedValue = taskRowView.Row[5].ToString();
+                ProjectIDBox.SelectedValue = taskRowView.Row[8].ToString();
 
+                StartDatePicker.SelectedDate = DateTime.Parse(taskRowView.Row[6].ToString());
+                EndDatePicker.SelectedDate = DateTime.Parse(taskRowView.Row[7].ToString());
+
+            }
         }
 
         private void AddResourceButton_Click(object sender, RoutedEventArgs e)

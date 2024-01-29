@@ -27,13 +27,14 @@ namespace ISRAT.Pages
         public StatusPage()
         {
             InitializeComponent();
+            StatusDataGrid.ItemsSource = statusTableAdapter.GetData();
             ColumnNameBox.ItemsSource = StatusDataGrid.Columns;
             ColumnNameBox.DisplayMemberPath = "Header";
             ColumnNameBox.SelectedValuePath = "DisplayIndex";
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            StatusDataGrid.ItemsSource = statusTableAdapter.GetData();
+            
         }
         private bool IsFieldsEmpty()
         {
