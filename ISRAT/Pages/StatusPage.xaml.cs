@@ -78,6 +78,10 @@ namespace ISRAT.Pages
                         break;
                 }
             }
+            else
+            {
+                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)

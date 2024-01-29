@@ -29,7 +29,11 @@ namespace ISRAT.Pages
         public TasksPage()
         {
             InitializeComponent();
-            ResourcesDataGrid.ItemsSource = tasksTableAdapter.GetData();
+            ColumnNameBox.ItemsSource =TasksDataGrid.Columns;
+            ColumnNameBox.DisplayMemberPath = "Header";
+            ColumnNameBox.SelectedValuePath = "DisplayIndex";
+
+            TasksDataGrid.ItemsSource = tasksTableAdapter.GetData();
             ProjectIDBox.ItemsSource = projectsTableAdapter.GetData();
             ProjectIDBox.SelectedValuePath = "ID";
             ProjectIDBox.DisplayMemberPath = "ID";
@@ -43,19 +47,33 @@ namespace ISRAT.Pages
             ResponsibleUserIDBox.DisplayMemberPath = "ID";
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private bool IsFieldsEmpty()
         {
-            
+            if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(DescriptionBox.Text) && !string.IsNullOrEmpty(PriorityBox.Text) 
+                && ProjectIDBox.SelectedValue != null && StatusIDBox.SelectedValue != null && ResponsibleUserIDBox.SelectedValue != null)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        private void UpdateDataGrid()
+        {
+            TasksDataGrid.ItemsSource = tasksTableAdapter.GetData();
         }
 
         private void ResourcesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataRowView taskRowView = ResourcesDataGrid.SelectedItem as DataRowView;
-            if (ResourcesDataGrid.SelectedItem != null)
+            DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
+            if (TasksDataGrid.SelectedItem != null)
             {
                 NameBox.Text = taskRowView.Row[1].ToString();
-                CharacteristicsBox.Text = taskRowView.Row[2].ToString();
-                Quantity.Text = taskRowView.Row[3].ToString();
+                DescriptionBox.Text = taskRowView.Row[2].ToString();
+                PriorityBox.Text = taskRowView.Row[3].ToString();
                 StatusIDBox.SelectedValue = taskRowView.Row[4].ToString();
                 ResponsibleUserIDBox.SelectedValue = taskRowView.Row[5].ToString();
                 ProjectIDBox.SelectedValue = taskRowView.Row[8].ToString();
@@ -66,29 +84,161 @@ namespace ISRAT.Pages
             }
         }
 
-        private void AddResourceButton_Click(object sender, RoutedEventArgs e)
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
+            if (IsFieldsEmpty())
+            {
+                string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
+                string sCaption = "Добавление";
 
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+                switch (rsltMessageBox)
+                {
+                    case MessageBoxResult.Yes:
+                        tasksTableAdapter.InsertQuery(NameBox.Text, DescriptionBox.Text, PriorityBox.Text, (int)StatusIDBox.SelectedValue,
+                            (int)ResponsibleUserIDBox.SelectedValue, StartDatePicker.SelectedDate.ToString(), EndDatePicker.SelectedDate.ToString(),
+                            (int)ProjectIDBox.SelectedValue);
+                        UpdateDataGrid();
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ChangeResourceButton_Click(object sender, RoutedEventArgs e)
         {
+            if (IsFieldsEmpty())
+            {
+                DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
+                if (TasksDataGrid.SelectedItem != null)
+                {
+                    string sMessageBoxText = "Вы уверены, что хотите изменить запись?";
+                    string sCaption = "Изменение";
 
+                    MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+                    MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+                    MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+                    switch (rsltMessageBox)
+                    {
+                        case MessageBoxResult.Yes:
+                            tasksTableAdapter.UpdateQuery(NameBox.Text, DescriptionBox.Text, PriorityBox.Text, int.Parse(StatusIDBox.SelectedValue.ToString()),
+                            int.Parse(ResponsibleUserIDBox.SelectedValue.ToString()), StartDatePicker.SelectedDate.ToString(), EndDatePicker.SelectedDate.ToString(),
+                            int.Parse(ProjectIDBox.SelectedValue.ToString()), int.Parse(taskRowView.Row[0].ToString()));
+                            UpdateDataGrid();
+                            break;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Выберите запись для изменения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
         }
 
         private void DeleteResourceButton_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
+            if (TasksDataGrid.SelectedItem != null)
+            {
+                string sMessageBoxText = "Вы уверены, что хотите удалить запись?";
+                string sCaption = "Удаление";
 
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+                switch (rsltMessageBox)
+                {
+                    case MessageBoxResult.Yes:
+                        tasksTableAdapter.DeleteQuery(int.Parse(taskRowView.Row[0].ToString()));
+                        UpdateDataGrid();
+                        break;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись для удаления", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void FindButton_Click(object sender, RoutedEventArgs e)
         {
-
+            int result = 0;
+            switch (ColumnNameBox.SelectedValue)
+            {
+                case 0:
+                    {
+                        int.TryParse(FindBox.Text, out result);
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByID(result);
+                        break;
+                    }
+                case 1:
+                    {
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByName(FindBox.Text);
+                        break;
+                    }
+                case 2:
+                    {
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByDesc(FindBox.Text);
+                        break;
+                    }
+                case 3:
+                    {
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByPriority(FindBox.Text);
+                        break;
+                    }
+                case 4:
+                    {
+                        int.TryParse(FindBox.Text, out result);
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByStatusID(result);
+                        break;
+                    }
+                case 5:
+                    {
+                        int.TryParse(FindBox.Text, out result);
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByResponseUserID(result);
+                        break;
+                    }
+                case 6:
+                    {
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByStartDate(FindBox.Text);
+                        break;
+                    }
+                case 7:
+                    {
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByDueDate(FindBox.Text);
+                        break;
+                    }
+                case 8:
+                    {
+                        int.TryParse(FindBox.Text, out result);
+                        TasksDataGrid.ItemsSource = tasksTableAdapter.GetSortedTableByProjectID(result);
+                        break;
+                    }
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             AdminStartPage.administrator.ChangeFrame(0);
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
         }
     }
 }

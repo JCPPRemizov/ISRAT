@@ -101,8 +101,8 @@ namespace ISRAT
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            LoginTextBox.Text = "";
-            PassTextBox.Password = "";
+            //LoginTextBox.Text = "";
+            //PassTextBox.Password = "";
         }
     }
 }

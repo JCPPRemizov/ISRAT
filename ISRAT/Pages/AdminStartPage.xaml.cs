@@ -48,7 +48,7 @@ namespace ISRAT.Pages
 
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
-
+            administrator.ChangeFrame(5);
         }
 
         private void RolesButton_Click(object sender, RoutedEventArgs e)

@@ -56,7 +56,7 @@ SELECT ID, Name, Description FROM Projects WHERE (ID = @ID)</CommandText>
               <Mapping SourceColumn="Description" DataSetColumn="Description" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[Projects] WHERE ([ID] = @Original_ID)</CommandText>
@@ -96,7 +96,7 @@ SELECT ID, Name, Description FROM Projects WHERE (ID = @ID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [dbo].[Projects] ([Name], [Description]) VALUES (@Name, @Description);</CommandText>
@@ -341,7 +341,7 @@ SELECT ID, Name FROM Status WHERE (ID = @ID)</CommandText>
               <Mapping SourceColumn="Name" DataSetColumn="Name" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[Status] WHERE ([ID] = @Original_ID)</CommandText>
@@ -371,7 +371,7 @@ SELECT ID, Name FROM Status WHERE (ID = @ID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [dbo].[Status] ([Name]) VALUES (@Name);</CommandText>
@@ -473,7 +473,143 @@ SELECT ID, Name, Description, Priority, Status_ID, Responsible_user_ID, Start_da
               <Mapping SourceColumn="Due_date" DataSetColumn="Due_date" />
               <Mapping SourceColumn="Project_ID" DataSetColumn="Project_ID" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [dbo].[Tasks] WHERE ([ID] = @Original_ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_ID" ColumnName="ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByDesc" GetMethodModifier="Public" GetMethodName="GetSortedTableByDesc" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByDesc" UserSourceName="GetSortedTableByDesc">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Description] LIKE @Description</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Description" ColumnName="Description" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@Description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="Description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByDueDate" GetMethodModifier="Public" GetMethodName="GetSortedTableByDueDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByDueDate" UserSourceName="GetSortedTableByDueDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Due_date] LIKE  @DueDate </CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="DueDate" ColumnName="Due_date" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@DueDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="Due_date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByID" GetMethodModifier="Public" GetMethodName="GetSortedTableByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByID" UserSourceName="GetSortedTableByID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [ID] LIKE @ID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ID" ColumnName="ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByName" GetMethodModifier="Public" GetMethodName="GetSortedTableByName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByName" UserSourceName="GetSortedTableByName">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Name] LIKE '%' + @Name + '%'</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Name" ColumnName="Name" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByPriority" GetMethodModifier="Public" GetMethodName="GetSortedTableByPriority" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByPriority" UserSourceName="GetSortedTableByPriority">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Priority] LIKE '%' + @Priority + '%'</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Priority" ColumnName="Priority" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Priority" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Priority" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByProjectID" GetMethodModifier="Public" GetMethodName="GetSortedTableByProjectID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByProjectID" UserSourceName="GetSortedTableByProjectID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Project_ID] LIKE @ProjectID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProjectID" ColumnName="Project_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ProjectID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Project_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByResponseUserID" GetMethodModifier="Public" GetMethodName="GetSortedTableByResponseUserID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByResponseUserID" UserSourceName="GetSortedTableByResponseUserID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Responsible_user_ID] LIKE @ResponsUserID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ResponsUserID" ColumnName="Responsible_user_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ResponsUserID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Responsible_user_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByStartDate" GetMethodModifier="Public" GetMethodName="GetSortedTableByStartDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByStartDate" UserSourceName="GetSortedTableByStartDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Start_date] LIKE '%' + @StartDate + '%'</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="StartDate" ColumnName="Start_date" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@StartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="Start_date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="ISRAT.dbo.Tasks" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetSortedTableByStatusID" GetMethodModifier="Public" GetMethodName="GetSortedTableByStatusID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetSortedTableByStatusID" UserSourceName="GetSortedTableByStatusID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Tasks WHERE [Status_ID] LIKE @Status_ID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Status_ID" ColumnName="Status_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Status_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Status_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[Tasks] ([Name], [Description], [Priority], [Status_ID], [Responsible_user_ID], [Start_date], [Due_date], [Project_ID]) VALUES (@Name, @Description, @Priority, @Status_ID, @Responsible_user_ID, @Start_date, @Due_date, @Project_ID);</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Name" ColumnName="Name" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Description" ColumnName="Description" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@Description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="Description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Priority" ColumnName="Priority" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Priority" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Priority" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Status_ID" ColumnName="Status_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Status_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Status_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Responsible_user_ID" ColumnName="Responsible_user_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Responsible_user_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Responsible_user_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Start_date" ColumnName="Start_date" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@Start_date" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="Start_date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Due_date" ColumnName="Due_date" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@Due_date" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="Due_date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Project_ID" ColumnName="Project_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Project_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Project_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateQuery">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE [dbo].[Tasks] SET [Name] = @Name, [Description] = @Description, [Priority] = @Priority, [Status_ID] = @Status_ID, [Responsible_user_ID] = @Responsible_user_ID, [Start_date] = @Start_date, [Due_date] = @Due_date, [Project_ID] = @Project_ID WHERE ([ID] = @Original_ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Name" ColumnName="Name" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Description" ColumnName="Description" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@Description" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="Description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Priority" ColumnName="Priority" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Priority" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Priority" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Status_ID" ColumnName="Status_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Status_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Status_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Responsible_user_ID" ColumnName="Responsible_user_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Responsible_user_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Responsible_user_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Start_date" ColumnName="Start_date" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@Start_date" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="Start_date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Due_date" ColumnName="Due_date" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@Due_date" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="Due_date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Project_ID" ColumnName="Project_ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Project_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Project_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_ID" ColumnName="ID" DataSourceName="ISRAT.dbo.Tasks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsersTableAdapter" GeneratorDataComponentClassName="UsersTableAdapter" Name="Users" UserDataComponentName="UsersTableAdapter">
             <MainSource>
@@ -545,7 +681,49 @@ SELECT ID, Name, Surname, Middle_Name, Login, Password, Role_ID FROM Users WHERE
               <Mapping SourceColumn="Password" DataSetColumn="Password" />
               <Mapping SourceColumn="Role_ID" DataSetColumn="Role_ID" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [dbo].[Users] WHERE ([ID] = @Original_ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_ID" ColumnName="ID" DataSourceName="ISRAT.dbo.Users" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[Users] ([Name], [Surname], [Middle_Name], [Login], [Password], [Role_ID]) VALUES (@Name, @Surname, @Middle_Name, @Login, @Password, @Role_ID);</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Name" ColumnName="Name" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Surname" ColumnName="Surname" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Surname" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Surname" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Middle_Name" ColumnName="Middle_Name" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Middle_Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Middle_Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Login" ColumnName="Login" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Login" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Login" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Password" ColumnName="Password" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role_ID" ColumnName="Role_ID" DataSourceName="ISRAT.dbo.Users" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Role_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Role_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ISRATConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateQuery">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE [dbo].[Users] SET [Name] = @Name, [Surname] = @Surname, [Middle_Name] = @Middle_Name, [Login] = @Login, [Password] = @Password, [Role_ID] = @Role_ID WHERE ([ID] = @Original_ID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Name" ColumnName="Name" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Surname" ColumnName="Surname" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Surname" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Surname" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Middle_Name" ColumnName="Middle_Name" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@Middle_Name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="Middle_Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Login" ColumnName="Login" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Login" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Login" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Password" ColumnName="Password" DataSourceName="ISRAT.dbo.Users" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role_ID" ColumnName="Role_ID" DataSourceName="ISRAT.dbo.Users" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Role_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Role_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_ID" ColumnName="ID" DataSourceName="ISRAT.dbo.Users" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ResourcesTableAdapter" GeneratorDataComponentClassName="ResourcesTableAdapter" Name="Resources" UserDataComponentName="ResourcesTableAdapter">
             <MainSource>

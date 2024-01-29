@@ -6,16 +6,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ISRAT.Pages"
       mc:Ignorable="d" 
-      Title="TasksPage" Loaded="Page_Loaded">
+      Title="TasksPage">
 
     <StackPanel Orientation="Vertical">
         <TextBlock Text="Задачи" FontSize="24" HorizontalAlignment="Center" Margin="0 0 0 20"/>
-        <DataGrid x:Name="ResourcesDataGrid" Style="{StaticResource MaterialDesignDataGrid}" CanUserDeleteRows="False" IsReadOnly="True" Margin="0 0 0 20" CanUserAddRows="False" SelectionChanged="ResourcesDataGrid_SelectionChanged" IsTextSearchEnabled="True" MaxHeight="300"></DataGrid>
+        <DataGrid x:Name="TasksDataGrid" Style="{StaticResource MaterialDesignDataGrid}" CanUserDeleteRows="False" IsReadOnly="True" Margin="0 0 0 20" CanUserAddRows="False" SelectionChanged="ResourcesDataGrid_SelectionChanged" IsTextSearchEnabled="True" MaxHeight="300"></DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical">
                 <TextBox x:Name="NameBox" MaxLength="255" MaxWidth="248.243333333333" materialDesign:HintAssist.Hint="Введите название задачи" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>
-                <TextBox x:Name="CharacteristicsBox" MaxLength="255" MaxWidth="248.243333333333" materialDesign:HintAssist.Hint="Введите описание задачи" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>
-                <TextBox x:Name="Quantity" materialDesign:HintAssist.Hint="Введите приоритет задачи" MaxWidth="248.243333333333" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 10"/>
+                <TextBox x:Name="DescriptionBox" MaxLength="255" MaxWidth="248.243333333333" materialDesign:HintAssist.Hint="Введите описание задачи" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>
+                <TextBox x:Name="PriorityBox" materialDesign:HintAssist.Hint="Введите приоритет задачи" MaxWidth="248.243333333333" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 10"/>
                 <ComboBox x:Name="StatusIDBox" Margin="0 0 0 25" materialDesign:HintAssist.Hint="Статус" materialDesign:HintAssist.HelperText="Статус"/>
                 <ComboBox x:Name="ResponsibleUserIDBox" Margin="0 0 0 25" materialDesign:HintAssist.Hint="Ответственный сотрудник" materialDesign:HintAssist.HelperText="Ответственный сотрудник"/>
                 <ComboBox x:Name="ProjectIDBox" Margin="0 0 0 25" materialDesign:HintAssist.Hint="Проект" materialDesign:HintAssist.HelperText="Проект"/>
@@ -27,17 +27,17 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="20 0 0 0">
-                <Button x:Name="AddResourceButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="AddResourceButton_Click" Margin="0 0 0 20">
+                <Button x:Name="AddTaskButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="AddTaskButton_Click" Margin="0 0 0 20">
                     <Grid>
                         <TextBlock Foreground="Black">Добавить</TextBlock>
                     </Grid>
                 </Button>
-                <Button x:Name="ChangeResourceButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="ChangeResourceButton_Click" Margin="0 0 0 20">
+                <Button x:Name="ChangeTaskButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="ChangeResourceButton_Click" Margin="0 0 0 20">
                     <Grid>
                         <TextBlock Foreground="Black">Изменить</TextBlock>
                     </Grid>
                 </Button>
-                <Button x:Name="DeleteResourceButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="DeleteResourceButton_Click" Margin="0 0 0 20">
+                <Button x:Name="DeleteTaskButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="DeleteResourceButton_Click" Margin="0 0 0 20">
                     <Grid>
                         <TextBlock Foreground="Black">Удалить</TextBlock>
                     </Grid>
@@ -45,6 +45,11 @@
                 <Button x:Name="FindButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="FindButton_Click" Margin="0 0 0 20">
                     <Grid>
                         <TextBlock Foreground="Black">Найти</TextBlock>
+                    </Grid>
+                </Button>
+                <Button x:Name="ResetButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="ResetButton_Click" Margin="0 0 0 20">
+                    <Grid>
+                        <TextBlock Foreground="Black">Сбросить</TextBlock>
                     </Grid>
                 </Button>
                 <Button x:Name="ExitButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="ExitButton_Click" Margin="0 0 0 20">

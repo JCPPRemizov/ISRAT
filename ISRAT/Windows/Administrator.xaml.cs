@@ -28,7 +28,8 @@ namespace ISRAT.Windows
             new ResourcesPage(),
             new StatusPage(),
             new ProjectsPage(),
-            new TasksPage()
+            new TasksPage(),
+            new UsersPage()
         };
         public Administrator()
         {
