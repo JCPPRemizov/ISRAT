@@ -1,0 +1,30 @@
+﻿<Window x:Class="ISRAT.Windows.Administrator"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISRAT.Windows"
+        mc:Ignorable="d"
+        Title="AdminWindow"  WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Border Margin="15" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+        </Border.Effect>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="HideAppButton" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignIconButton}" Height="20" Width="20" Margin="5" Background="Green" BorderBrush="Transparent" Click="HideAppButton_Click">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Minus" VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Foreground="Black"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="CloseAppButton" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignIconButton}" Height="20" Width="20" Margin="5" Background="Red" BorderBrush="Transparent" Click="CloseAppButton_Click">
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Close" VerticalAlignment="Center" HorizontalAlignment="Center" Width="15" Height="15" Foreground="Black"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+            <Frame x:Name="AdminFrame" HorizontalAlignment="Center"  Margin="0 40 0 0" NavigationUIVisibility="Hidden"/>
+        </StackPanel>
+    </Border>
+</Window>

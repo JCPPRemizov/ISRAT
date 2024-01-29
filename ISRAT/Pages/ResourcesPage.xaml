@@ -1,0 +1,54 @@
+﻿<Page x:Class="ISRAT.Pages.ResourcesPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ISRAT.Pages"
+      mc:Ignorable="d" 
+      Title="ResourcesPage" Loaded="Page_Loaded">
+
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="Ресуры" FontSize="24" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+        <DataGrid x:Name="ResourcesDataGrid" Style="{StaticResource MaterialDesignDataGrid}" CanUserDeleteRows="False" IsReadOnly="True" Margin="0 0 0 20" CanUserAddRows="False" SelectionChanged="ResourcesDataGrid_SelectionChanged" IsTextSearchEnabled="True" MaxHeight="300"></DataGrid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <TextBox x:Name="NameBox" MaxLength="255" materialDesign:HintAssist.Hint="Введите название ресурса" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
+                <TextBox x:Name="CharacteristicsBox" MaxLength="255" MaxWidth="300" materialDesign:HintAssist.Hint="Введите характеристики ресурса" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" FontSize="18" Margin="0 0 0 20"/>
+                <TextBox x:Name="Quantity" materialDesign:HintAssist.Hint="Введите количество ресурса" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 10" PreviewTextInput="Quantity_PreviewTextInput"/>
+                <TextBox x:Name="Type" MaxLength="255" materialDesign:HintAssist.Hint="Введите тип ресурса" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="ColumnNameBox"/>
+                    <TextBox x:Name="FindBox" Width="200" materialDesign:HintAssist.Hint="Поиск" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:HintAssist.IsFloating="False"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="20 0 20 0"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="20 0 0 0">
+                <Button x:Name="AddResourceButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="AddResourceButton_Click" Margin="0 0 0 20">
+                    <Grid>
+                        <TextBlock Foreground="Black">Добавить</TextBlock>
+                    </Grid>
+                </Button>
+                <Button x:Name="ChangeResourceButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="ChangeResourceButton_Click" Margin="0 0 0 20">
+                    <Grid>
+                        <TextBlock Foreground="Black">Изменить</TextBlock>
+                    </Grid>
+                </Button>
+                <Button x:Name="DeleteResourceButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="DeleteResourceButton_Click" Margin="0 0 0 20">
+                    <Grid>
+                        <TextBlock Foreground="Black">Удалить</TextBlock>
+                    </Grid>
+                </Button>
+                <Button x:Name="FindButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="FindButton_Click" Margin="0 0 0 20">
+                    <Grid>
+                        <TextBlock Foreground="Black">Найти</TextBlock>
+                    </Grid>
+                </Button>
+                <Button x:Name="ExitButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="ExitButton_Click" Margin="0 0 0 20">
+                    <Grid>
+                        <TextBlock Foreground="Black">Выйти</TextBlock>
+                    </Grid>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

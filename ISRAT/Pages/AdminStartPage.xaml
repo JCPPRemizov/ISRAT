@@ -1,0 +1,75 @@
+﻿<Page x:Class="ISRAT.Pages.AdminStartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ISRAT.Pages"
+      mc:Ignorable="d" 
+      Title="AdminStartPage">
+    <StackPanel>
+    <TextBlock x:Name="InfoTextBox" Text="Вы авторизовались под ролью администратора" HorizontalAlignment="Center" FontSize="24"></TextBlock>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="ResourcesButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="ResourcesButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Ресурсы</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="TasksButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="TasksButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Задачи</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="ProjectsButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="ProjectsButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Проекты</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="UsersButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="UsersButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Пользователи</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="RolesButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="RolesButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Роли</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="ResourcesAllocationButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="ResourcesAllocationButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Распределение ресурсов</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="ResourcesOrderButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="ResourcesOrderButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Заказ ресурсов</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="StatusButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="StatusButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Статус</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    <Grid Margin="0 20 0 0">
+        <Button x:Name="ExportButton" HorizontalAlignment="Center" Width="200" Background="#ddd" BorderBrush="Black" Click="ExportButton_Click">
+            <Grid>
+                <TextBlock Foreground="Black">Экспорт</TextBlock>
+            </Grid>
+        </Button>
+    </Grid>
+    </StackPanel>
+</Page>
