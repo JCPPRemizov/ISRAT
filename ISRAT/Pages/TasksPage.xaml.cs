@@ -47,7 +47,7 @@ namespace ISRAT.Pages
             ResponsibleUserIDBox.DisplayMemberPath = "ID";
         }
 
-        private bool IsFieldsEmpty()
+        private bool FieldsCheck()
         {
             if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(DescriptionBox.Text) && !string.IsNullOrEmpty(PriorityBox.Text) 
                 && ProjectIDBox.SelectedValue != null && StatusIDBox.SelectedValue != null && ResponsibleUserIDBox.SelectedValue != null)
@@ -86,7 +86,7 @@ namespace ISRAT.Pages
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
                 string sCaption = "Добавление";
@@ -106,15 +106,11 @@ namespace ISRAT.Pages
                         break;
                 }
             }
-            else
-            {
-                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void ChangeResourceButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
                 if (TasksDataGrid.SelectedItem != null)

@@ -36,7 +36,7 @@ namespace ISRAT.Pages
         {
             
         }
-        private bool IsFieldsEmpty()
+        private bool FieldsCheck()
         {
             if (!string.IsNullOrEmpty(NameBox.Text))
             {
@@ -60,7 +60,7 @@ namespace ISRAT.Pages
 
         private void AddStatusButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
                 string sCaption = "Добавление";
@@ -78,15 +78,11 @@ namespace ISRAT.Pages
                         break;
                 }
             }
-            else
-            {
-                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 DataRowView resourceRowView = StatusDataGrid.SelectedItem as DataRowView;
                 if (StatusDataGrid.SelectedItem != null)

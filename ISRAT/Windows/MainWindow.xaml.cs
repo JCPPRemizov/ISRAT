@@ -72,7 +72,7 @@ namespace ISRAT
                 }
                 else
                 {
-                    MessageBox.Show("Длина логина и пароля должна быть от 6 до 20 символов\nПароль должен иметь хотя бы одну цифру и спец.символ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Длина логина и пароля должна быть от 6 до 20 символов\nПароль должен иметь хотя бы одну цифру и спец.символ\nРазрешены только английские символы", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else

@@ -35,7 +35,7 @@ namespace ISRAT.Pages
             ColumnNameBox.SelectedValuePath = "DisplayIndex";
         }
 
-        private bool IsFieldsEmpty()
+        private bool FieldsCheck()
         {
             if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(CharacteristicsBox.Text)
               && !string.IsNullOrEmpty(Quantity.Text) && !string.IsNullOrEmpty(Type.Text))
@@ -56,7 +56,7 @@ namespace ISRAT.Pages
 
         private void ChangeResourceButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 DataRowView resourceRowView = ResourcesDataGrid.SelectedItem as DataRowView;
                 if (ResourcesDataGrid.SelectedItem != null)
@@ -88,7 +88,7 @@ namespace ISRAT.Pages
 
         private void AddResourceButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
                 string sCaption = "Добавление";
@@ -105,10 +105,6 @@ namespace ISRAT.Pages
                         UpdateDataGrid();
                         break;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -1,19 +1,8 @@
 ﻿using ISRAT.DataSet1TableAdapters;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ISRAT.Pages
 {
@@ -68,7 +57,7 @@ namespace ISRAT.Pages
 
         private void ChangeUserButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FiledsCheck())
             {
                 DataRowView userRowView = UsersDataGrid.SelectedItem as DataRowView;
                 if (UsersDataGrid.SelectedItem != null)
@@ -100,7 +89,7 @@ namespace ISRAT.Pages
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FiledsCheck())
             {
                 string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
                 string sCaption = "Добавление";
@@ -118,10 +107,6 @@ namespace ISRAT.Pages
                         UpdateDataGrid();
                         break;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -199,12 +184,32 @@ namespace ISRAT.Pages
             UsersDataGrid.ItemsSource = usersTableAdapter.GetData();
         }
 
-        private bool IsFieldsEmpty()
+        private bool FiledsCheck()
         {
             if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(SurnameBox.Text) && !string.IsNullOrEmpty(MiddleNameBox.Text)
                 && !string.IsNullOrEmpty(LoginBox.Text) && !string.IsNullOrEmpty(PasswordBox.Text) && RoleIDBox.SelectedValue != null)
             {
-                return true;
+                string loginPattern = @"^[A-Za-z]{6,20}$";
+                string passwordPattern = @"^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,20}$";
+                if (LoginBox.Text.Length < 6)
+                {
+                    MessageBox.Show("Логин должен быть от 6 символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                else if (PasswordBox.Text.Length < 6)
+                {
+                    MessageBox.Show("Пароль должен быть от 6 символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                else if (Regex.IsMatch(PasswordBox.Text, passwordPattern) && Regex.IsMatch(LoginBox.Text, loginPattern))
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Длина логина и пароля должна быть от 6 до 20 символов\nПароль должен иметь хотя бы одну цифру и спец.символ\nРазрешены только английские символы", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
             }
             else
             {

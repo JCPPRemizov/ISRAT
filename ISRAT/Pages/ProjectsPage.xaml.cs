@@ -32,7 +32,7 @@ namespace ISRAT.Pages
             ColumnNameBox.SelectedValuePath = "DisplayIndex";
         }
 
-        private bool IsFieldsEmpty()
+        private bool FieldsCheck()
         {
             if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(DescriptionBox.Text))
             {
@@ -62,7 +62,7 @@ namespace ISRAT.Pages
 
         private void AddProjectButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
                 string sCaption = "Добавление";
@@ -80,15 +80,11 @@ namespace ISRAT.Pages
                         break;
                 }
             }
-            else
-            {
-                MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void ChangeProjectButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsFieldsEmpty())
+            if (FieldsCheck())
             {
                 DataRowView projectRowView = ProjectsDataGrid.SelectedItem as DataRowView;
                 if (ProjectsDataGrid.SelectedItem != null)
