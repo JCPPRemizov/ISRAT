@@ -206,5 +206,10 @@ namespace ISRAT.Pages
                 return false;
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
+        }
     }
 }

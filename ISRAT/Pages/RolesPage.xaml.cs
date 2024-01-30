@@ -155,5 +155,10 @@ namespace ISRAT.Pages
                 DescriptionBox.Text = roleRowView.Row[2].ToString();
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
+        }
     }
 }

@@ -30,7 +30,9 @@ namespace ISRAT.Windows
             new ProjectsPage(),
             new TasksPage(),
             new UsersPage(),
-            new RolesPage()
+            new RolesPage(),
+            new ResourcesAllocationPage(),
+            new ResourcesOrderPage()
         };
         public Administrator()
         {

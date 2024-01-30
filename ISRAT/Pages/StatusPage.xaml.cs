@@ -34,7 +34,7 @@ namespace ISRAT.Pages
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            UpdateDataGrid();
         }
         private bool FieldsCheck()
         {

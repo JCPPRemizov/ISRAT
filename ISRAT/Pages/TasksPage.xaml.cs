@@ -229,5 +229,10 @@ namespace ISRAT.Pages
         {
             UpdateDataGrid();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
+        }
     }
 }

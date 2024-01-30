@@ -58,7 +58,7 @@ namespace ISRAT.Pages
 
         private void ResourcesAllocationButton_Click(object sender, RoutedEventArgs e)
         {
-
+            administrator.ChangeFrame(7);
         }
 
         private void ResourcesOrderButton_Click(object sender, RoutedEventArgs e)

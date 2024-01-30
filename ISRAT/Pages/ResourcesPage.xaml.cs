@@ -51,7 +51,7 @@ namespace ISRAT.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            UpdateDataGrid();
         }
 
         private void ChangeResourceButton_Click(object sender, RoutedEventArgs e)
