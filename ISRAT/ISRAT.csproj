@@ -78,6 +78,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\RolesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\StatusPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +114,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindow.cs" />
     <Compile Include="Pages\AdminStartPage.xaml.cs">
       <DependentUpon>AdminStartPage.xaml</DependentUpon>
     </Compile>
@@ -118,6 +123,9 @@
     </Compile>
     <Compile Include="Pages\ResourcesPage.xaml.cs">
       <DependentUpon>ResourcesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RolesPage.xaml.cs">
+      <DependentUpon>RolesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StatusPage.xaml.cs">
       <DependentUpon>StatusPage.xaml</DependentUpon>

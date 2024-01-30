@@ -53,7 +53,7 @@ namespace ISRAT.Pages
 
         private void RolesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            administrator.ChangeFrame(6);
         }
 
         private void ResourcesAllocationButton_Click(object sender, RoutedEventArgs e)

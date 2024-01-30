@@ -66,6 +66,19 @@ namespace ISRAT.Pages
             TasksDataGrid.ItemsSource = tasksTableAdapter.GetData();
         }
 
+        private void ClearFields()
+        {
+            NameBox.Text = string.Empty;
+            DescriptionBox.Text = string.Empty;
+            PriorityBox.Text = string.Empty;
+            StatusIDBox.SelectedValue = null;
+            ResponsibleUserIDBox.SelectedValue = null;
+            ProjectIDBox.SelectedValue = null;
+
+            StartDatePicker.SelectedDate = null;
+            EndDatePicker.SelectedDate = null;
+        }
+
         private void ResourcesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
@@ -88,15 +101,8 @@ namespace ISRAT.Pages
         {
             if (FieldsCheck())
             {
-                string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
-                string sCaption = "Добавление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.InsertDialog())
                 {
                     case MessageBoxResult.Yes:
                         tasksTableAdapter.InsertQuery(NameBox.Text, DescriptionBox.Text, PriorityBox.Text, (int)StatusIDBox.SelectedValue,
@@ -115,21 +121,15 @@ namespace ISRAT.Pages
                 DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
                 if (TasksDataGrid.SelectedItem != null)
                 {
-                    string sMessageBoxText = "Вы уверены, что хотите изменить запись?";
-                    string sCaption = "Изменение";
 
-                    MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                    MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                    MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                    switch (rsltMessageBox)
+                    switch (DialogWindow.UpdateDialog())
                     {
                         case MessageBoxResult.Yes:
                             tasksTableAdapter.UpdateQuery(NameBox.Text, DescriptionBox.Text, PriorityBox.Text, int.Parse(StatusIDBox.SelectedValue.ToString()),
                             int.Parse(ResponsibleUserIDBox.SelectedValue.ToString()), StartDatePicker.SelectedDate.ToString(), EndDatePicker.SelectedDate.ToString(),
                             int.Parse(ProjectIDBox.SelectedValue.ToString()), int.Parse(taskRowView.Row[0].ToString()));
                             UpdateDataGrid();
+                            ClearFields();
                             break;
                     }
 
@@ -147,15 +147,8 @@ namespace ISRAT.Pages
             DataRowView taskRowView = TasksDataGrid.SelectedItem as DataRowView;
             if (TasksDataGrid.SelectedItem != null)
             {
-                string sMessageBoxText = "Вы уверены, что хотите удалить запись?";
-                string sCaption = "Удаление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.DeleteDialog())
                 {
                     case MessageBoxResult.Yes:
                         tasksTableAdapter.DeleteQuery(int.Parse(taskRowView.Row[0].ToString()));

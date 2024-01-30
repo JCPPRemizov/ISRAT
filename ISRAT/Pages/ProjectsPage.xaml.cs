@@ -64,15 +64,8 @@ namespace ISRAT.Pages
         {
             if (FieldsCheck())
             {
-                string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
-                string sCaption = "Добавление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.InsertDialog())
                 {
                     case MessageBoxResult.Yes:
                         projectsTableAdapter.InsertQuery(NameBox.Text, DescriptionBox.Text);
@@ -89,19 +82,13 @@ namespace ISRAT.Pages
                 DataRowView projectRowView = ProjectsDataGrid.SelectedItem as DataRowView;
                 if (ProjectsDataGrid.SelectedItem != null)
                 {
-                    string sMessageBoxText = "Вы уверены, что хотите изменить запись?";
-                    string sCaption = "Изменение";
 
-                    MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                    MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                    MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                    switch (rsltMessageBox)
+                    switch (DialogWindow.UpdateDialog())
                     {
                         case MessageBoxResult.Yes:
                             projectsTableAdapter.UpdateQuery(NameBox.Text, DescriptionBox.Text, int.Parse(projectRowView.Row[0].ToString()));
                             UpdateDataGrid();
+                            ClearFields();
                             break;
                     }
 
@@ -119,15 +106,8 @@ namespace ISRAT.Pages
             DataRowView projectRowView = ProjectsDataGrid.SelectedItem as DataRowView;
             if (ProjectsDataGrid.SelectedItem != null)
             {
-                string sMessageBoxText = "Вы уверены, что хотите удалить запись?";
-                string sCaption = "Удаление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.DeleteDialog())
                 {
                     case MessageBoxResult.Yes:
                         projectsTableAdapter.DeleteQuery(int.Parse(projectRowView.Row[0].ToString()));
@@ -175,6 +155,12 @@ namespace ISRAT.Pages
         private void UpdateDataGrid()
         {
             ProjectsDataGrid.ItemsSource = projectsTableAdapter.GetData();
+        }
+
+        private void ClearFields()
+        {
+            NameBox.Text = string.Empty;
+            DescriptionBox.Text = string.Empty;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using ISRAT.DataSet1TableAdapters;
-using ISRAT.Windows;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,26 +18,24 @@ using System.Windows.Shapes;
 namespace ISRAT.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для StatusPage.xaml
+    /// Логика взаимодействия для RolesPage.xaml
     /// </summary>
-    public partial class StatusPage : Page
+    public partial class RolesPage : Page
     {
-        private StatusTableAdapter statusTableAdapter = new StatusTableAdapter();
-        public StatusPage()
+        RolesTableAdapter rolesTableAdapter = new RolesTableAdapter();
+        public RolesPage()
         {
             InitializeComponent();
-            StatusDataGrid.ItemsSource = statusTableAdapter.GetData();
-            ColumnNameBox.ItemsSource = StatusDataGrid.Columns;
+            UpdateDataGrid();
+
+            ColumnNameBox.ItemsSource = RolesDataGrid.Columns;
             ColumnNameBox.DisplayMemberPath = "Header";
             ColumnNameBox.SelectedValuePath = "DisplayIndex";
         }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
+
         private bool FieldsCheck()
         {
-            if (!string.IsNullOrEmpty(NameBox.Text))
+            if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(DescriptionBox.Text))
             {
                 return true;
             }
@@ -49,42 +46,43 @@ namespace ISRAT.Pages
             }
         }
 
-        private void StatusDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdateDataGrid()
         {
-            DataRowView resourceRowView = StatusDataGrid.SelectedItem as DataRowView;
-            if (StatusDataGrid.SelectedItem != null)
-            {
-                NameBox.Text = resourceRowView.Row[1].ToString();
-            }
+            RolesDataGrid.ItemsSource = rolesTableAdapter.GetData();
         }
 
-        private void AddStatusButton_Click(object sender, RoutedEventArgs e)
+        private void ClearFields()
+        {
+            NameBox.Text = string.Empty;
+            DescriptionBox.Text = string.Empty;
+        }
+
+        private void AddRoleButton_Click(object sender, RoutedEventArgs e)
         {
             if (FieldsCheck())
             {
-
                 switch (DialogWindow.InsertDialog())
                 {
                     case MessageBoxResult.Yes:
-                        statusTableAdapter.InsertQuery(NameBox.Text);
+                        rolesTableAdapter.InsertQuery(NameBox.Text, DescriptionBox.Text);
                         UpdateDataGrid();
                         break;
                 }
             }
         }
 
-        private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        private void ChangeRoleButton_Click(object sender, RoutedEventArgs e)
         {
             if (FieldsCheck())
             {
-                DataRowView resourceRowView = StatusDataGrid.SelectedItem as DataRowView;
-                if (StatusDataGrid.SelectedItem != null)
+                DataRowView resourceRowView = RolesDataGrid.SelectedItem as DataRowView;
+                if (RolesDataGrid.SelectedItem != null)
                 {
 
                     switch (DialogWindow.UpdateDialog())
                     {
                         case MessageBoxResult.Yes:
-                            statusTableAdapter.UpdateQuery(NameBox.Text, int.Parse(resourceRowView.Row[0].ToString()));
+                            rolesTableAdapter.UpdateQuery(NameBox.Text, DescriptionBox.Text, int.Parse(resourceRowView.Row[0].ToString()));
                             UpdateDataGrid();
                             ClearFields();
                             break;
@@ -99,15 +97,15 @@ namespace ISRAT.Pages
             }
         }
 
-        private void DeleteStatusButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteRoleButton_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView resourceRowView = StatusDataGrid.SelectedItem as DataRowView;
-            if (StatusDataGrid.SelectedItem != null)
+            DataRowView roleRowView = RolesDataGrid.SelectedItem as DataRowView;
+            if (RolesDataGrid.SelectedItem != null)
             {
                 switch (DialogWindow.DeleteDialog())
                 {
                     case MessageBoxResult.Yes:
-                        statusTableAdapter.DeleteQuery(int.Parse(resourceRowView.Row[0].ToString()));
+                        rolesTableAdapter.DeleteQuery(int.Parse(roleRowView.Row[0].ToString()));
                         UpdateDataGrid();
                         break;
                 }
@@ -127,32 +125,35 @@ namespace ISRAT.Pages
                 case 0:
                     {
                         int.TryParse(FindBox.Text, out result);
-                        StatusDataGrid.ItemsSource = statusTableAdapter.GetSortedTableByID(result);
+                        RolesDataGrid.ItemsSource = rolesTableAdapter.GetSortedTableByID(result);
                         break;
                     }
                 case 1:
                     {
-                        StatusDataGrid.ItemsSource = statusTableAdapter.GetSortedTableByName(FindBox.Text);
+                        RolesDataGrid.ItemsSource = rolesTableAdapter.GetSortedTableByName(FindBox.Text);
+                        break;
+                    }
+                case 2:
+                    {
+                        RolesDataGrid.ItemsSource = rolesTableAdapter.GetSortedTableByDesc(FindBox.Text);
                         break;
                     }
             }
-
         }
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             AdminStartPage.administrator.ChangeFrame(0);
         }
 
-        private void UpdateDataGrid()
+        private void RolesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            StatusDataGrid.ItemsSource = statusTableAdapter.GetData();
+            DataRowView roleRowView = RolesDataGrid.SelectedItem as DataRowView;
+            if (RolesDataGrid.SelectedItem != null)
+            {
+                NameBox.Text = roleRowView.Row[1].ToString();
+                DescriptionBox.Text = roleRowView.Row[2].ToString();
+            }
         }
-
-        private void ClearFields()
-        {
-            NameBox.Text = string.Empty;
-        }
-
-
     }
 }

@@ -61,19 +61,13 @@ namespace ISRAT.Pages
                 DataRowView resourceRowView = ResourcesDataGrid.SelectedItem as DataRowView;
                 if (ResourcesDataGrid.SelectedItem != null)
                 {
-                    string sMessageBoxText = "Вы уверены, что хотите изменить запись?";
-                    string sCaption = "Изменение";
 
-                    MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                    MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                    MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                    switch (rsltMessageBox)
+                    switch (DialogWindow.UpdateDialog())
                     {
                         case MessageBoxResult.Yes:
                             resourcesTableAdapter.UpdateQuery(NameBox.Text, CharacteristicsBox.Text, int.Parse(Quantity.Text), Type.Text, int.Parse(resourceRowView.Row[0].ToString()));
                             UpdateDataGrid();
+                            ClearFields();
                             break;
                     }
 
@@ -90,15 +84,8 @@ namespace ISRAT.Pages
         {
             if (FieldsCheck())
             {
-                string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
-                string sCaption = "Добавление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.InsertDialog())
                 {
                     case MessageBoxResult.Yes:
                         resourcesTableAdapter.InsertQuery(NameBox.Text, CharacteristicsBox.Text, int.Parse(Quantity.Text), Type.Text);
@@ -113,15 +100,8 @@ namespace ISRAT.Pages
             DataRowView resourceRowView = ResourcesDataGrid.SelectedItem as DataRowView;
             if (ResourcesDataGrid.SelectedItem != null)
             {
-                string sMessageBoxText = "Вы уверены, что хотите удалить запись?";
-                string sCaption = "Удаление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.DeleteDialog())
                 {
                     case MessageBoxResult.Yes:
                         resourcesTableAdapter.DeleteQuery(int.Parse(resourceRowView.Row[0].ToString()));
@@ -196,6 +176,14 @@ namespace ISRAT.Pages
         private void UpdateDataGrid()
         {
             ResourcesDataGrid.ItemsSource = resourcesTableAdapter.GetData();
+        }
+
+        private void ClearFields()
+        {
+            NameBox.Text = string.Empty;
+            CharacteristicsBox.Text = string.Empty;
+            Quantity.Text = string.Empty;
+            Type.Text = string.Empty;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

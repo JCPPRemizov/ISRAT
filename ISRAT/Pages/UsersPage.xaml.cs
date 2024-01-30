@@ -32,15 +32,7 @@ namespace ISRAT.Pages
             DataRowView userRowView = UsersDataGrid.SelectedItem as DataRowView;
             if (UsersDataGrid.SelectedItem != null)
             {
-                string sMessageBoxText = "Вы уверены, что хотите удалить запись?";
-                string sCaption = "Удаление";
-
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.DeleteDialog())
                 {
                     case MessageBoxResult.Yes:
                         usersTableAdapter.DeleteQuery(int.Parse(userRowView.Row[0].ToString()));
@@ -62,19 +54,13 @@ namespace ISRAT.Pages
                 DataRowView userRowView = UsersDataGrid.SelectedItem as DataRowView;
                 if (UsersDataGrid.SelectedItem != null)
                 {
-                    string sMessageBoxText = "Вы уверены, что хотите изменить запись?";
-                    string sCaption = "Изменение";
 
-                    MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                    MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                    MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                    switch (rsltMessageBox)
+                    switch (DialogWindow.UpdateDialog())
                     {
                         case MessageBoxResult.Yes:
                             usersTableAdapter.UpdateQuery(NameBox.Text, SurnameBox.Text, MiddleNameBox.Text, LoginBox.Text, PasswordBox.Text, int.Parse(RoleIDBox.SelectedValue.ToString()), int.Parse(userRowView.Row[0].ToString()));
                             UpdateDataGrid();
+                            ClearFields();
                             break;
                     }
 
@@ -91,15 +77,8 @@ namespace ISRAT.Pages
         {
             if (FiledsCheck())
             {
-                string sMessageBoxText = "Вы уверены, что хотите добавить запись?";
-                string sCaption = "Добавление";
 
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-                MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-                MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
-
-                switch (rsltMessageBox)
+                switch (DialogWindow.InsertDialog())
                 {
                     case MessageBoxResult.Yes:
                         usersTableAdapter.InsertQuery(NameBox.Text, SurnameBox.Text, MiddleNameBox.Text, LoginBox.Text,
@@ -184,12 +163,22 @@ namespace ISRAT.Pages
             UsersDataGrid.ItemsSource = usersTableAdapter.GetData();
         }
 
+        private void ClearFields()
+        {
+            NameBox.Text = string.Empty;
+            SurnameBox.Text = string.Empty;
+            MiddleNameBox.Text = string.Empty;
+            LoginBox.Text= string.Empty;
+            PasswordBox.Text = string.Empty;
+            RoleIDBox.SelectedValue = null;
+        }
+
         private bool FiledsCheck()
         {
-            if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(SurnameBox.Text) && !string.IsNullOrEmpty(MiddleNameBox.Text)
+            if (!string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(SurnameBox.Text)
                 && !string.IsNullOrEmpty(LoginBox.Text) && !string.IsNullOrEmpty(PasswordBox.Text) && RoleIDBox.SelectedValue != null)
             {
-                string loginPattern = @"^[A-Za-z]{6,20}$";
+                string loginPattern = @"^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{6,20}$";
                 string passwordPattern = @"^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,20}$";
                 if (LoginBox.Text.Length < 6)
                 {
