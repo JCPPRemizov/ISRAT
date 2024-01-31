@@ -107,8 +107,15 @@ namespace ISRAT.Pages
                 switch (DialogWindow.DeleteDialog())
                 {
                     case MessageBoxResult.Yes:
-                        statusTableAdapter.DeleteQuery(int.Parse(resourceRowView.Row[0].ToString()));
-                        UpdateDataGrid();
+                        try
+                        {
+                            statusTableAdapter.DeleteQuery(int.Parse(resourceRowView.Row[0].ToString()));
+                            UpdateDataGrid();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Ошибка удаления!\nИмеются связанные таблицы!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                         break;
                 }
 
