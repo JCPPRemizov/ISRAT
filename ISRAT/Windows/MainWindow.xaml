@@ -25,8 +25,8 @@
                 </Button>
             </StackPanel>
             <TextBlock Text="ISRAT" FontSize="30" FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center"/>
-            <TextBox x:Name="LoginTextBox" Text="admins" MaxLength="20" materialDesign:HintAssist.Hint="Введите логин" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
-            <PasswordBox x:Name="PassTextBox" Password="Admins28@" MaxLength="20" materialDesign:HintAssist.Hint="Введите пароль" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" FontSize="18" Margin="0 0 0 20"/>
+            <TextBox x:Name="LoginTextBox" MaxLength="20" materialDesign:HintAssist.Hint="Введите логин" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
+            <PasswordBox x:Name="PassTextBox" MaxLength="20" materialDesign:HintAssist.Hint="Введите пароль" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" FontSize="18" Margin="0 0 0 20"/>
             <Grid Margin="0 20 0 0">
                 <Button x:Name="EnterButton" HorizontalAlignment="Center" Width="120" Background="#ddd" BorderBrush="Black" Click="EnterButton_Click">
                     <Grid>
