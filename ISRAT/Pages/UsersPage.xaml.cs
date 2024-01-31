@@ -81,9 +81,18 @@ namespace ISRAT.Pages
                 switch (DialogWindow.InsertDialog())
                 {
                     case MessageBoxResult.Yes:
-                        usersTableAdapter.InsertQuery(NameBox.Text, SurnameBox.Text, MiddleNameBox.Text, LoginBox.Text,
-                            PasswordBox.Text, (int)RoleIDBox.SelectedValue);
-                        UpdateDataGrid();
+                        try
+                        {
+                            usersTableAdapter.InsertQuery(NameBox.Text, SurnameBox.Text, MiddleNameBox.Text, LoginBox.Text,
+                                PasswordBox.Text, (int)RoleIDBox.SelectedValue);
+                            UpdateDataGrid();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Такой логин уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                       
                         break;
                 }
             }

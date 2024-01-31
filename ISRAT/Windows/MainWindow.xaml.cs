@@ -1,4 +1,5 @@
 ﻿using ISRAT.DataSet1TableAdapters;
+using ISRAT.Model;
 using ISRAT.Windows;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace ISRAT
     public partial class MainWindow : Window
     {
         Administrator administratorWindow = new Administrator();
+        SeniorManager seniorManager = new SeniorManager();
         UsersTableAdapter usersTableAdapter = new UsersTableAdapter();
         public MainWindow()
         {
@@ -50,7 +52,7 @@ namespace ISRAT
         {
             if (!string.IsNullOrEmpty(LoginTextBox.Text) && !string.IsNullOrEmpty(PassTextBox.Password))
             {
-                string loginPattern = @"^[A-Za-z]{6,20}$";
+                string loginPattern = @"^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{6,20}$";
                 string passwordPattern = @"^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,20}$";
                 if (Regex.IsMatch(PassTextBox.Password, passwordPattern) && Regex.IsMatch(LoginTextBox.Text, loginPattern))
                 {
@@ -61,6 +63,13 @@ namespace ISRAT
                                 Hide();
                                 Administrator.mainWindow = this;
                                 administratorWindow.Show();
+                                break;
+                            }
+                        case 1005:
+                            {
+                                Hide();
+                                SeniorManager.mainWindow = this;
+                                seniorManager.Show();
                                 break;
                             }
                         case -1:
@@ -91,6 +100,8 @@ namespace ISRAT
                 {
                     if (password == (string)authTable.Rows[i][5])
                     {
+                        CurrentUser.RoleID = Convert.ToInt32(authTable.Rows[i][6]);
+                        CurrentUser.UserID = Convert.ToInt32(authTable.Rows[i][0]);
                         userRoleID = Convert.ToInt32(authTable.Rows[i][6]);
                         return userRoleID;
                     }

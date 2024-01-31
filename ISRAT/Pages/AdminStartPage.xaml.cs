@@ -63,7 +63,7 @@ namespace ISRAT.Pages
 
         private void ResourcesOrderButton_Click(object sender, RoutedEventArgs e)
         {
-
+            administrator.ChangeFrame(8);
         }
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)

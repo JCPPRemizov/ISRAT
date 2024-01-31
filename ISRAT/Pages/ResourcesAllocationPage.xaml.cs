@@ -1,4 +1,5 @@
 ﻿using ISRAT.DataSet1TableAdapters;
+using ISRAT.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -188,12 +189,20 @@ namespace ISRAT.Pages
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateDataGrid();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            AdminStartPage.administrator.ChangeFrame(0);
+            if (CurrentUser.RoleID == 3)
+            {
+                AdminStartPage.administrator.ChangeFrame(0);
+            }
+            else if (CurrentUser.RoleID == 1005)
+            {
+                SeniorManagerStartPage.seniorManager.ChangeFrame(0);
+            }
+            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -212,5 +221,7 @@ namespace ISRAT.Pages
             ResourceIDBox.DisplayMemberPath = "Name";
             ResourceIDBox.SelectedValuePath = "ID";
         }
+
+
     }
 }
