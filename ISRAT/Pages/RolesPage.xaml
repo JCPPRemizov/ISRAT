@@ -14,7 +14,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                 <TextBox x:Name="NameBox" MaxLength="255" materialDesign:HintAssist.Hint="Введите название роли" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
-                <TextBox x:Name="DescriptionBox" materialDesign:HintAssist.Hint="Введите описание роли" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
+                <TextBox x:Name="DescriptionBox" MaxLength="255" materialDesign:HintAssist.Hint="Введите описание роли" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:HintAssist.IsFloating="False" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="0 0 0 20"/>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox x:Name="ColumnNameBox" MaxWidth="200"/>
                     <TextBox x:Name="FindBox" Width="200" materialDesign:HintAssist.Hint="Поиск" materialDesign:HintAssist.IsFloating="False" materialDesign:HintAssist.Foreground="Black" Foreground="Black" materialDesign:TextFieldAssist.UnderlineBrush="Black"  Style="{StaticResource MaterialDesignFilledTextBox}" FontSize="18" Margin="20 0 20 0"/>
