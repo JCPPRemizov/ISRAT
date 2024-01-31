@@ -9,7 +9,7 @@
       Title="ResourcesAllocation" Loaded="Page_Loaded">
 
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="Распределение ресурсов" FontSize="24" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+        <TextBlock Text="Заказ ресурсов" FontSize="24" HorizontalAlignment="Center" Margin="0 0 0 20"/>
         <DataGrid x:Name="ResOrderDataGrid" Style="{StaticResource MaterialDesignDataGrid}" CanUserDeleteRows="False" IsReadOnly="True" Margin="0 0 0 20" CanUserAddRows="False" SelectionChanged="ResOrderDataGrid_SelectionChanged" IsTextSearchEnabled="True" MaxHeight="300"></DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical">

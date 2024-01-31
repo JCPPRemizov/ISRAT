@@ -30,22 +30,6 @@ namespace ISRAT.Pages
         public TasksPage()
         {
             InitializeComponent();
-            ColumnNameBox.ItemsSource =TasksDataGrid.Columns;
-            ColumnNameBox.DisplayMemberPath = "Header";
-            ColumnNameBox.SelectedValuePath = "DisplayIndex";
-
-            TasksDataGrid.ItemsSource = tasksTableAdapter.GetData();
-            ProjectIDBox.ItemsSource = projectsTableAdapter.GetData();
-            ProjectIDBox.SelectedValuePath = "ID";
-            ProjectIDBox.DisplayMemberPath = "ID";
-
-            StatusIDBox.ItemsSource = statusTableAdapter.GetData();
-            StatusIDBox.SelectedValuePath = "ID";
-            StatusIDBox.DisplayMemberPath = "ID";
-
-            ResponsibleUserIDBox.ItemsSource = usersTableAdapter.GetData();
-            ResponsibleUserIDBox.SelectedValuePath = "ID";
-            ResponsibleUserIDBox.DisplayMemberPath = "ID";
         }
 
         private bool FieldsCheck()
@@ -241,6 +225,22 @@ namespace ISRAT.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateDataGrid();
+            ColumnNameBox.ItemsSource = TasksDataGrid.Columns;
+            ColumnNameBox.DisplayMemberPath = "Header";
+            ColumnNameBox.SelectedValuePath = "DisplayIndex";
+
+            TasksDataGrid.ItemsSource = tasksTableAdapter.GetData();
+            ProjectIDBox.ItemsSource = projectsTableAdapter.GetData();
+            ProjectIDBox.SelectedValuePath = "ID";
+            ProjectIDBox.DisplayMemberPath = "Name";
+
+            StatusIDBox.ItemsSource = statusTableAdapter.GetData();
+            StatusIDBox.SelectedValuePath = "ID";
+            StatusIDBox.DisplayMemberPath = "Name";
+
+            ResponsibleUserIDBox.ItemsSource = usersTableAdapter.GetData();
+            ResponsibleUserIDBox.SelectedValuePath = "ID";
+            ResponsibleUserIDBox.DisplayMemberPath = "Name";
         }
     }
 }
